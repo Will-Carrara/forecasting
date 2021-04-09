@@ -1,0 +1,27 @@
+body {
+  background-color: #1D2329; !important
+}
+
+html {
+  background-color: #1D2329;
+}
+
+.btn {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 66px;
+    left: 505px;
+}
+
+h1 {
+  color: #CDD9E5;
+}
+
+h2, h3, h4 {
+  color: #768390;
+}
+
+p {
+  color: #768390;
+}

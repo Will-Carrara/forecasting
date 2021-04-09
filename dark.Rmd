@@ -1,0 +1,98 @@
+---
+title: "Forecasting"
+date: "`r format(Sys.time(), '%B %d %Y')`"
+output: 
+  html_document:
+      css: css/dark.css
+---
+
+<button class='btn' onclick="window.location.href='index.html'">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFC101" class="bi bi-sun" viewBox="0 0 16 16">
+  <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+</svg>
+</button>
+
+```{r, include=FALSE}
+# opacity
+library(ggplot2)
+
+# configure graphs
+knitr::opts_chunk$set(comment=NA, echo=FALSE, fig.width=16, fig.height=7, fig.align="center", warning=FALSE)
+
+# set wider print outputs
+options(width = 300)
+
+# script code
+source('utils.R')
+
+# global colors
+orange = "tan1"
+blue = "steelblue1"
+red = "tomato1"
+grey = "grey"
+light_grey = alpha("grey",.6)
+dark_grey = "slategray4"
+gold = '#FFC101'
+
+# x-axis for plotting
+months = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct", "Nov","Dec")
+```
+
+```{r}
+# sample crop locations
+almonds = '-120.52377639337982,37.09137396885117,-120.51047263666595,37.09137396885117,-120.51047263666595,37.098254386121475,-120.52377639337982,37.098254386121475,-120.52377639337982,37.09137396885117'
+
+alfalfa = '-117.09821839843676,33.660245385123105'
+
+corn = '-120.56397339189547,37.57942300981602'
+
+wine_grapes = '-119.21293496828484,35.74707499950872'
+```
+
+```{r, include=FALSE, cache=TRUE}
+# clean data
+alfalfa = process(parse(request(alfalfa)))
+almonds = process(parse(request(almonds)))
+corn = process(parse(request(corn)))
+wine_grapes = process(parse(request(wine_grapes)))
+```
+
+```{r}
+# beautiful plotting 
+visualize_ndvi = function (df, crop) {
+    par(bg='#1D2329')
+    # main plot figure 
+    plot(ndvi~time, data=df, xlim=c(0,364), ylim=c(0,1), type='l', lwd=2.5, col=blue, las=1, xaxt="n", xlab="Month", ylab="NDVI", col.axis='#768390', col.lab='#CDD9E5', cex.axis = 1.2, cex.lab = 1.2)
+    
+    title( main=paste0("NDVI Forecasting ",crop," (2021)"), col.main='#CDD9E5')
+    
+    rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col='#1D2329')
+    grid(col='#768390')
+    
+    lines(ndvi~time, data=df, col=blue, lwd=2.5, type='l')
+    # highlight forecast 
+    lines(ndvi~time, data=df[df$id == "PREDICTED",], col=red, lwd=2.5, type='l')
+    
+    # add polyfit 
+    fit <- lm(ndvi ~ poly(1:length(df$time), 8, raw=TRUE), df) 
+    
+    # add linear fit 
+    lines(fit$fitted.values ~df$time, col=gold, lwd=2.5, lty=2)
+    
+    # add legend
+    legend("topright", inset=c(.008,.03), legend=c("Observed","Predicted","Trend"), col=c(blue,red,orange), pch=16, xpd=TRUE, bty="n", cex=1.2, text.col='#768390')
+    
+    # reformat x-axis
+    xtick<-seq(0, 364, by=31)
+    axis(side=1, at=xtick, labels=FALSE)
+    text(x=xtick, par("usr")[3], labels=months, pos=1, xpd=TRUE, col='#768390', cex=1.2)
+}
+```
+
+
+```{r}
+visualize_ndvi(alfalfa, "Alfalfa")
+visualize_ndvi(almonds, "Almonds")
+visualize_ndvi(corn, "Corn")
+visualize_ndvi(wine_grapes, "Wine Grapes")
+```
