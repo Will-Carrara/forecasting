@@ -1,6 +1,6 @@
 ---
 title: "Forecasting"
-date: "`r format(Sys.time(), '%B %d %Y')`"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
       css: css/light.css
@@ -10,99 +10,21 @@ output:
   <button class="dropbtn"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#000000" class="bi bi-list" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 </svg></button>
-  <div class="dropdown-content">
-<a href="#">Alfalfa</a>
-<a href="#">Almonds</a>
-<a href="#">Corn</a>
-<a href="#">Wine Grapes</a>
-  </div>
+
+
+<div class="dropdown-content">
+<a href="alfalfa_light.html">Alfalfa</a>
+<a href="almonds_light.html">Almonds</a>
+<a href="corn_light.html">Corn</a>
+<a href="wine_grapes_light.html">Wine Grapes</a>
+</div>
 </div>
 
 
 <button class='btn' onclick="window.location.href='dark.html'">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-moon-fill">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill= "#768390" class="bi bi-moon-fill">
       <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
     </svg>
 </button>
 
-```{r, include=FALSE}
-# opacity
-library(ggplot2)
-
-# configure graphs
-knitr::opts_chunk$set(comment=NA, echo=FALSE, fig.width=16, fig.height=7, fig.align="center", warning=FALSE)
-
-# set wider print outputs
-options(width = 300)
-
-# script code
-source('utils.R')
-
-# global colors
-orange = "tan1"
-blue = "steelblue1"
-red = "tomato1"
-grey = "grey"
-light_grey = alpha("grey",.6)
-dark_grey = "slategray4"
-gold = '#FFC101'
-
-# x-axis for plotting
-months = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct", "Nov","Dec")
-```
-
-```{r}
-# sample crop locations
-almonds = '-120.52377639337982,37.09137396885117,-120.51047263666595,37.09137396885117,-120.51047263666595,37.098254386121475,-120.52377639337982,37.098254386121475,-120.52377639337982,37.09137396885117'
-
-alfalfa = '-117.09821839843676,33.660245385123105'
-
-corn = '-120.56397339189547,37.57942300981602'
-
-wine_grapes = '-119.21293496828484,35.74707499950872'
-```
-
-```{r, include=FALSE, cache=TRUE}
-# clean data
-alfalfa = process(parse(request(alfalfa)))
-almonds = process(parse(request(almonds)))
-corn = process(parse(request(corn)))
-wine_grapes = process(parse(request(wine_grapes)))
-```
-
-```{r}
-# beautiful plotting 
-visualize_ndvi = function (df, crop) {
-    # main plot figure 
-    plot(ndvi~time, data=df, xlim=c(0,364), ylim=c(0,1), type='l', lwd=2.5, col=blue, las=1, xaxt="n", xlab="Month", ylab="NDVI", cex.axis = 1.2, cex.lab = 1.2)
-    
-    title(main=paste0("NDVI Forecasting ",crop," (2021)"))
-    grid()
-    
-    lines(ndvi~time, data=df, col=blue, lwd=2.5, type='l')
-    # highlight forecast 
-    lines(ndvi~time, data=df[df$id == "PREDICTED",], col=red, lwd=2.5, type='l')
-    
-    # add polyfit 
-    fit <- lm(ndvi ~ poly(1:length(df$time), 8, raw=TRUE), df) 
-    
-    # add linear fit 
-    lines(fit$fitted.values ~df$time, col=gold, lwd=2.5, lty=2)
-    
-    # add legend
-    legend("topright", inset=c(.008,.03), legend=c("Observed","Predicted","Trend"), col=c(blue,red,orange), pch=16, xpd=TRUE, bty="n", cex=1.2)
-    
-    # reformat x-axis
-    xtick<-seq(0, 364, by=31)
-    axis(side=1, at=xtick, labels=FALSE)
-    text(x=xtick, par("usr")[3], labels=months, pos=1, xpd=TRUE, cex=1.2)
-}
-```
-
-
-```{r}
-visualize_ndvi(alfalfa, "Alfalfa")
-visualize_ndvi(almonds, "Almonds")
-visualize_ndvi(corn, "Corn")
-visualize_ndvi(wine_grapes, "Wine Grapes")
-```
+Here we explore a historically based forecasting system for SIMS.
