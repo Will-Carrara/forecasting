@@ -150,7 +150,7 @@ visualize_ndvi = function (df, crop, dark=TRUE) {
         # set background color and margins
         par(mar=c(8,3,3.5,1), oma=c(0,4,0,0))
         # make empty plot with labels
-        plot(x,y, xlim=c(0,364), ylim=c(0,1), xlab="", ylab="", xaxt="n", las=1, cex.axis=1.8)
+        plot(x,y, xlim=c(0,364), ylim=c(0,1), xlab="", ylab="", xaxt="n", las=1, cex.axis=1.8, col="white")
         # add grid
         grid()
         
@@ -237,7 +237,7 @@ visualize_eto = function (df, crop, dark=TRUE) {
         # set background color and margins
         par(mar=c(8,3,3.5,1), oma=c(0,4,0,0))
         # make empty plot with labels
-        plot(x,y, xlim=c(0,364), ylim=c(0,10), xlab="", ylab="", xaxt="n", las=1, cex.axis=1.8)
+        plot(x,y, xlim=c(0,364), ylim=c(0,10), xlab="", ylab="", xaxt="n", las=1, cex.axis=1.8, col="white")
         # add grid
         grid()
         
@@ -323,7 +323,7 @@ visualize_kcb = function (df, crop, dark=TRUE) {
         # set background color and margins
         par(mar=c(8,3,3.5,1), oma=c(0,4,0,0))
         # make empty plot with labels
-        plot(x,y, xlim=c(0,364), ylim=c(0,1.2), xlab="", ylab="", xaxt="n", las=1, cex.axis=1.8)
+        plot(x,y, xlim=c(0,364), ylim=c(0,1.2), xlab="", ylab="", xaxt="n", las=1, cex.axis=1.8, col="white")
         # add grid
         grid()
         
