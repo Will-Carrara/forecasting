@@ -131,9 +131,9 @@ visualize_ndvi = function (df, crop, dark=TRUE) {
         text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, col=lesser, xpd=TRUE)
         
         # add data for ground truth 
-        lines(ndvi~time, data=df[df$id != "PREDICTED", ], col="#42E24E", type='l', lwd=3.5)
+        lines(ndvi~time, data=df[df$id != "FORECASTED", ], col="#42E24E", type='l', lwd=3.5)
         # highlight forecast 
-        lines(ndvi~time, data=df[c(df$id == "PREDICTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
+        lines(ndvi~time, data=df[c(df$id == "FORECASTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
         
         # create regression model 
         fit <- lm(ndvi~poly(1:length(df$time), 8, raw=TRUE), df) 
@@ -165,9 +165,9 @@ visualize_ndvi = function (df, crop, dark=TRUE) {
         text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, xpd=TRUE)
         
         # add data for ground truth 
-        lines(ndvi~time, data=df[df$id != "PREDICTED", ], col="#42E24E", type='l', lwd=3.5)
+        lines(ndvi~time, data=df[df$id != "FORECASTED", ], col="#42E24E", type='l', lwd=3.5)
         # highlight forecast 
-        lines(ndvi~time, data=df[c(df$id == "PREDICTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
+        lines(ndvi~time, data=df[c(df$id == "FORECASTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
         
         # create regression model 
         fit <- lm(ndvi~poly(1:length(df$time), 8, raw=TRUE), df) 
@@ -218,9 +218,9 @@ visualize_eto = function (df, crop, dark=TRUE) {
         text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, col=lesser, xpd=TRUE)
         
         # add data for ground truth 
-        lines(eto~time, data=df[df$id != "PREDICTED", ], col="steelblue1", type='l', lwd=3.5)
+        lines(eto~time, data=df[df$id != "FORECASTED", ], col="steelblue1", type='l', lwd=3.5)
         # highlight forecast 
-        lines(eto~time, data=df[c(df$id == "PREDICTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
+        lines(eto~time, data=df[c(df$id == "FORECASTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
         
         # create regression model 
         fit <- lm(eto~poly(1:length(df$time), 8, raw=TRUE), df) 
@@ -252,9 +252,9 @@ visualize_eto = function (df, crop, dark=TRUE) {
         text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, xpd=TRUE)
         
         # add data for ground truth 
-        lines(eto~time, data=df[df$id != "PREDICTED", ], col="steelblue1", type='l', lwd=3.5)
+        lines(eto~time, data=df[df$id != "FORECASTED", ], col="steelblue1", type='l', lwd=3.5)
         # highlight forecast 
-        lines(eto~time, data=df[c(df$id == "PREDICTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
+        lines(eto~time, data=df[c(df$id == "FORECASTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
         
         # create regression model 
         fit <- lm(eto~poly(1:length(df$time), 8, raw=TRUE), df) 
@@ -304,9 +304,9 @@ visualize_kcb = function (df, crop, dark=TRUE) {
         text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, col=lesser, xpd=TRUE)
         
         # add data for ground truth 
-        lines(kcb~time, data=df[df$id != "PREDICTED", ], col="#A17FFD", type='l', lwd=3.5)
+        lines(kcb~time, data=df[df$id != "FORECASTED", ], col="#A17FFD", type='l', lwd=3.5)
         # highlight forecast 
-        lines(kcb~time, data=df[c(df$id == "PREDICTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
+        lines(kcb~time, data=df[c(df$id == "FORECASTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
         
         # create regression model 
         fit <- lm(kcb~poly(1:length(df$time), 8, raw=TRUE), df) 
@@ -338,9 +338,9 @@ visualize_kcb = function (df, crop, dark=TRUE) {
         text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, xpd=TRUE)
         
         # add data for ground truth 
-        lines(kcb~time, data=df[df$id != "PREDICTED", ], col="#A17FFD", type='l', lwd=3.5)
+        lines(kcb~time, data=df[df$id != "FORECASTED", ], col="#A17FFD", type='l', lwd=3.5)
         # highlight forecast 
-        lines(kcb~time, data=df[c(df$id == "PREDICTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
+        lines(kcb~time, data=df[c(df$id == "FORECASTED", TRUE)[-1], ], col="tomato1", type='l', lwd=3.5)
         
         # create regression model 
         fit <- lm(kcb~poly(1:length(df$time), 8, raw=TRUE), df) 

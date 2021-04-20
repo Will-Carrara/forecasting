@@ -41,7 +41,7 @@ options(width=500)
 source('../../utils.R')
 ```
 
-```{r, include=FALSE, cache=TRUE}
+```{r, include=FALSE, cache=FALSE}
 # coordinates
 corn = '-120.56397339189547,37.57942300981602'
 

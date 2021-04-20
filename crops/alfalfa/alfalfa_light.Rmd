@@ -41,7 +41,7 @@ options(width=500)
 source('../../utils.R')
 ```
 
-```{r, include=FALSE, cache=TRUE}
+```{r, include=FALSE, cache=FALSE}
 # coordinates
 alfalfa = '-117.09821839843676,33.660245385123105'
 

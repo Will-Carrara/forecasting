@@ -41,7 +41,7 @@ options(width=500)
 source('../../utils.R')
 ```
 
-```{r, include=FALSE, cache=TRUE}
+```{r, include=FALSE, cache=FALSE}
 # coordinates
 wine_grapes = '-119.21293496828484,35.74707499950872'
 
