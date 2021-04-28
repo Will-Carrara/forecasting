@@ -1,9 +1,9 @@
 ---
-title: "Corn"
+title: "`r crop`"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
-      css: ../../css/dark.css
+      css: ../css/dark.css
 ---
 
 <div class="dropdown">
@@ -16,11 +16,12 @@ output:
 <a href="alfalfa_dark.html">Alfalfa</a>
 <a href="almonds_dark.html">Almonds</a>
 <a href="corn_dark.html">Corn</a>
+<a href="walnuts_dark.html">Walnuts</a>
 <a href="wine_grapes_dark.html">Wine Grapes</a>
 </div>
 </div>
 
-<button class='btn' onclick="window.location.href='corn_light.html'">
+<button class='btn' onclick="window.location.href='index.html'">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFC101" class="bi bi-sun">
       <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
     </svg>
@@ -28,9 +29,6 @@ output:
 
 
 ```{r, include=FALSE}
-# opacity
-library(ggplot2)
-
 # configure graphs
 knitr::opts_chunk$set(comment=NA, echo=FALSE, fig.width=20, fig.height=9, fig.align="center", warning=FALSE)
 
@@ -38,24 +36,16 @@ knitr::opts_chunk$set(comment=NA, echo=FALSE, fig.width=20, fig.height=9, fig.al
 options(width=500)
 
 # script code
-source('../../utils.R')
-```
-
-```{r, include=FALSE, cache=FALSE}
-# coordinates
-corn = '-120.56397339189547,37.57942300981602'
-
-# clean data
-corn = process(parse(request(corn)))
+source('../utils/utils.R')
 ```
 
 ```{r}
 # plot ndvi
-visualize_ndvi(corn, "Corn", dark=TRUE)
+visualize(df, gt, 'NDVI', crop, dark=TRUE)
 
 # plot eto
-visualize_eto(corn, "Corn", dark=TRUE)
+visualize(df, gt, 'Eto', crop, dark=TRUE)
 
 # plot kcb
-visualize_kcb(corn, "Corn", dark=TRUE)
+visualize(df, gt, 'Kcb', crop, dark=TRUE)
 ```
