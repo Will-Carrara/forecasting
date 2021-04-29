@@ -34,8 +34,8 @@ for (i in 1:nrow(data)) {
     gt = process(parse(request(geometry, 'time_series'), '2020'))
 
     # generate dark report
-    rmarkdown::render("dark_template.Rmd",output_file=paste0(crop, '_dark.html')) 
+    rmarkdown::render("dark_template.Rmd",output_file=paste0(tolower(crop), '_dark.html')) 
     
     # generate light report
-    rmarkdown::render("light_template.Rmd",output_file=paste0(crop, '_light.html')) 
+    rmarkdown::render("light_template.Rmd",output_file=paste0(tolower(crop), '_light.html')) 
 }
