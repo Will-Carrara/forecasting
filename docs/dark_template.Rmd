@@ -15,11 +15,15 @@ output:
 <div class="dropdown-content">
 <a href="alfalfa_dark.html">Alfalfa</a>
 <a href="almonds_dark.html">Almonds</a>
+<a href="citrus_dark.html">Citrus</a>
 <a href="corn_dark.html">Corn</a>
+<a href="pistachios_dark.html">Pistachios</a>
+<a href="rice_dark.html">Rice</a>
 <a href="walnuts_dark.html">Walnuts</a>
 <a href="wine_grapes_dark.html">Wine Grapes</a>
 </div>
 </div>
+
 
 <button class='btn' onclick="window.location.href='index.html'">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFC101" class="bi bi-sun">
