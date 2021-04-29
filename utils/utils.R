@@ -182,7 +182,8 @@ visualize = function (forecast, truth, var, crop, dark=TRUE) {
     #truth = df[df$id != "FORECASTED", ]
     
     # add graph labels 
-    title(main=paste0(var, " Forecasting ",crop," (2020)"), col.main=main, cex.main=2.1, line=2)
+    title = gsub("_", " ", crop, ignore.case=TRUE)
+    title(main=paste0(var, " Forecasting ",title," (2020)"), col.main=main, cex.main=2.1, line=2)
     title(xlab="Month", col.lab=main, cex.lab=2, line=4)
     title(ylab=var, col.lab=main, cex.lab=2, line=2, outer=TRUE, adj=.56)
     

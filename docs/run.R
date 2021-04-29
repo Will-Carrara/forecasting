@@ -20,6 +20,9 @@ for (i in 1:nrow(data)) {
     # get crop name
     crop = row['name']
     
+    # title to pass to html
+    title = gsub("_", " ", crop, ignore.case=TRUE)
+    
     # get spatial coordinates
     lon = row['longitude']
     lat = row['latitude']
