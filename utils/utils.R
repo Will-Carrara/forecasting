@@ -115,7 +115,7 @@ visualize = function (forecast, truth, var, crop, dark=TRUE) {
     months = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct", "Nov","Dec")
     
     # forecast color 
-    t_col = alpha('tomato1', .5)
+    t_col = 'tomato1'
     # cutoff line
     c_col = '#FFA9FC'
     # linear fir color 
@@ -195,11 +195,11 @@ visualize = function (forecast, truth, var, crop, dark=TRUE) {
     segments(x0=forecast[c(forecast$id == "FORECASTED", TRUE), 'time'][1],y0=-2,
              x1=forecast[c(forecast$id == "FORECASTED", TRUE), 'time'][1], y1=15, col=c_col, lty=2, lwd=3.5)
     
+    # add data for ground truth 
+    lines(truth[,tolower(var)]~time, data=truth, col=alpha(t_col, .6), type='l', lwd=3.5)
+    
     # highlight forecast 
     lines(forecast[,tolower(var)]~time, data=forecast, col=color, type='l', lwd=3.5)
-    
-    # add data for ground truth 
-    lines(truth[,tolower(var)]~time, data=truth, col=t_col, type='l', lwd=3.5)
     
     # create regression model 
     fit <- lm(truth[,tolower(var)]~poly(1:length(truth$time), 8, raw=TRUE), truth) 
