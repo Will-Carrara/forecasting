@@ -5,11 +5,11 @@ library(httr)
 library(ggplot2)
 
 # api call
-request = function (geometry, endpoint, crop_type=-1) {
+request = function (geometry, endpoint, year, crop_type=-1) {
     
     # dates for comparison
-    start_date = '2020-01-01'
-    end_date = '2020-12-31'
+    start_date = paste0(year,'-01-01')
+    end_date = paste0(year,'-12-31')
     
     # api server address
     server = 'http://127.0.0.1:5000/'
@@ -103,7 +103,7 @@ process = function (df) {
 }
 
 # beautiful plotting 
-visualize = function (forecast, truth, var, crop, dark=TRUE) {
+visualize = function (forecast, truth, var, crop, year, dark=TRUE) {
     
     # set margins
     par(mar=c(8,3,3.5,1), oma=c(0,4,0,0))
@@ -183,7 +183,7 @@ visualize = function (forecast, truth, var, crop, dark=TRUE) {
     
     # add graph labels 
     title = gsub("_", " ", crop, ignore.case=TRUE)
-    title(main=paste0(var, " Forecasting ",title," (2020)"), col.main=main, cex.main=2.1, line=2)
+    title(main=paste0(var, " Forecasting ", title," (", year, ")"), col.main=main, cex.main=2.1, line=2)
     title(xlab="Month", col.lab=main, cex.lab=2, line=4)
     title(ylab=var, col.lab=main, cex.lab=2, line=2, outer=TRUE, adj=.56)
     

@@ -45,11 +45,11 @@ source('../utils/utils.R')
 
 ```{r}
 # plot ndvi
-visualize(df, gt, 'NDVI', crop, dark=TRUE)
+visualize(df, gt, 'NDVI', crop, year, dark=TRUE)
 
 # plot eto
-visualize(df, gt, 'Eto', crop, dark=TRUE)
+visualize(df, gt, 'Eto', crop, year, dark=TRUE)
 
 # plot kcb
-visualize(df, gt, 'Kcb', crop, dark=TRUE)
+visualize(df, gt, 'Kcb', crop, year, dark=TRUE)
 ```

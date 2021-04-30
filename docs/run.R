@@ -6,6 +6,8 @@ source('../utils/utils.R')
 # read data
 data = read.csv("../data/crops.csv", header=TRUE)
 
+print(data)
+
 # generate light home page
 rmarkdown::render("index.Rmd",output_file='index.html') 
 
@@ -20,6 +22,9 @@ for (i in 1:nrow(data)) {
     # get crop name
     crop = row['name']
     
+    #year = row['historical']
+    year = '2019'
+    
     # title to pass to html
     title = gsub("_", " ", crop, ignore.case=TRUE)
     
@@ -31,10 +36,10 @@ for (i in 1:nrow(data)) {
     geometry = paste0(lon, ',', lat)
     
     # make api request for forecast
-    df = process(parse(request(geometry, 'forecast'), '2020'))
+    df = process(parse(request(geometry, 'forecast', year), year))
     
     # make api request for ground truth
-    gt = process(parse(request(geometry, 'time_series'), '2020'))
+    gt = process(parse(request(geometry, 'time_series', year), year))
 
     # generate dark report
     rmarkdown::render("dark_template.Rmd",output_file=paste0(tolower(crop), '_dark.html')) 
