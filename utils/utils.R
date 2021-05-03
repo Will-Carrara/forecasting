@@ -188,7 +188,7 @@ visualize = function (forecast, truth, var, crop, year, dark=TRUE) {
     title(ylab=var, col.lab=main, cex.lab=2, line=2, outer=TRUE, adj=.56)
     
     # reformat x-axis
-    xtick<-seq(0, 364, by=31)
+    xtick<-seq(0, 364, by=30.5)
     axis(side=1, at=xtick, labels=FALSE)
     text(x=xtick, par("usr")[3], labels=months, pos=1, cex=1.8, offset=1.1, col=lesser, xpd=TRUE)
     
