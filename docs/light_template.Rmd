@@ -15,9 +15,14 @@ output:
 <div class="dropdown-content">
 <a href="alfalfa_light.html">Alfalfa</a>
 <a href="almonds_light.html">Almonds</a>
+<a href="cherries_light.html">Cherries</a>
 <a href="citrus_light.html">Citrus</a>
 <a href="corn_light.html">Corn</a>
+<a href="misc_vegs_&_fruits_light.html">Misc Vegs & Fruits</a> 
+<a href="olives_light.html">Olives</a>  
+<a href="peaches_light.html">Peaches</a>
 <a href="pistachios_light.html">Pistachios</a>
+<a href="plums_light.html">Plums</a>
 <a href="rice_light.html">Rice</a>
 <a href="walnuts_light.html">Walnuts</a>
 <a href="wine_grapes_light.html">Wine Grapes</a>
