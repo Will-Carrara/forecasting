@@ -25,7 +25,8 @@ request = function (geometry, endpoint, year, crop_type=-1) {
                                 moving_average = 0,
                                 output_format = 'csv',
                                 start_date = start_date,
-                                end_date = end_date)
+                                end_date = end_date,
+                                reference_year = '2018')
     )
     
     # obtain content of api return 

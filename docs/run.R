@@ -6,8 +6,6 @@ source('../utils/utils.R')
 # read data
 data = read.csv("../data/crops.csv", header=TRUE)
 
-print(data)
-
 # generate light home page
 rmarkdown::render("index.Rmd",output_file='index.html') 
 
