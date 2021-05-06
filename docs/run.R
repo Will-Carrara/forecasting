@@ -12,7 +12,7 @@ rmarkdown::render("index.Rmd",output_file='index.html')
 # generate dark home page
 rmarkdown::render("index_dark.Rmd",output_file='index_dark.html') 
 
-# generate website
+# generate website 
 for (i in 1:nrow(data)) {
     # get row information
     row <- data[i,]
@@ -21,7 +21,7 @@ for (i in 1:nrow(data)) {
     crop = row['name']
     
     #year = row['historical']
-    year = '2019'
+    year = 2020
     
     # title to pass to html
     title = gsub("_", " ", crop, ignore.case=TRUE)
@@ -38,6 +38,9 @@ for (i in 1:nrow(data)) {
     
     # make api request for ground truth
     gt = process(parse(request(geometry, 'time_series', year), year))
+    
+    # make api request for previosu year
+    pr = process(parse(request(geometry, 'time_series', year-1), year-1))
 
     # generate dark report
     rmarkdown::render("dark_template.Rmd",output_file=paste0(tolower(crop), '_dark.html')) 

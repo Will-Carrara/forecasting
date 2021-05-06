@@ -10,6 +10,7 @@ request = function (geometry, endpoint, year, crop_type=-1) {
     # dates for comparison
     start_date = paste0(year,'-01-01')
     end_date = paste0(year,'-12-31')
+    today = paste0(year,'-05-06')
     
     # api server address
     server = 'http://127.0.0.1:5000/'
@@ -22,11 +23,12 @@ request = function (geometry, endpoint, year, crop_type=-1) {
                                 crop_type = crop_type,
                                 interpolate = TRUE,
                                 aggregation = 'mean',
-                                moving_average = 0,
+                                moving_average = 2,
                                 output_format = 'csv',
                                 start_date = start_date,
                                 end_date = end_date,
-                                reference_year = '2018')
+                                reference_year = '1',
+                                today = today)
     )
     
     # obtain content of api return 
@@ -88,8 +90,12 @@ parse = function (content, year) {
 
 # post-process
 process = function (df) {
+ 
     # remove any nan values
     df = na.omit(df)
+    
+    # remove duplicate numeric values
+    #df = df[!duplicated(df['ndvi']), ]
     
     # remove any negative values
     df$ndvi = ifelse(df$ndvi <= 0, NA, df$ndvi)
@@ -104,7 +110,7 @@ process = function (df) {
 }
 
 # beautiful plotting 
-visualize = function (forecast, truth, var, crop, year, dark=TRUE) {
+visualize = function (forecast, truth, previous, var, crop, year, dark=TRUE) {
     
     # set margins
     par(mar=c(8,3,3.5,1), oma=c(0,4,0,0))
@@ -119,8 +125,8 @@ visualize = function (forecast, truth, var, crop, year, dark=TRUE) {
     t_col = 'tomato1'
     # cutoff line
     c_col = '#FFA9FC'
-    # linear fir color 
-    l_col = '#FFC101'
+    # previous year  
+    p_col = 'steelblue1'
     
     # set parameters for variables
     # normalized difference vegetation index
@@ -128,19 +134,19 @@ visualize = function (forecast, truth, var, crop, year, dark=TRUE) {
         # y bounds
         y = c(0,1)    
         # line color 
-        color = '#42E24E'
+        color = '#FFC101'
     # reference evapotranspiration
     } else if (var == 'Eto') {
         # y bounds
         y = c(0,10)
         # line color 
-        color = 'steelblue1'
+        color = '#FFC101'
     # basil crop coefficient
     } else if (var == 'Kcb') {
         # y bounds
         y = c(0,1.2)
         # line color 
-        color = '#32FFFF'
+        color = '#FFC101'
     }
     
     # set parameters for dark plots
@@ -195,21 +201,23 @@ visualize = function (forecast, truth, var, crop, year, dark=TRUE) {
     
     # add line for cutoff
     segments(x0=forecast[c(forecast$id == "FORECASTED", TRUE), 'time'][1],y0=-2,
-             x1=forecast[c(forecast$id == "FORECASTED", TRUE), 'time'][1], y1=15, col=c_col, lty=2, lwd=3.5)
+             x1=forecast[c(forecast$id == "FORECASTED", TRUE), 'time'][1], y1=15, col=c_col, lty=5, lwd=3.5)
     
     # add data for ground truth 
-    lines(truth[,tolower(var)]~time, data=truth, col=alpha(t_col, .6), type='l', lwd=3.5)
+    lines(truth[,tolower(var)]~time, data=truth, col=alpha(t_col, .7), lty=1, lwd=3.5)
     
     # highlight forecast 
-    lines(forecast[,tolower(var)]~time, data=forecast, col=color, type='l', lwd=3.5)
+    lines(forecast[,tolower(var)]~time, data=forecast, col=color, lty=1, lwd=3.7)
+    
+    # add line for previous years data
+    lines(previous[,tolower(var)]~time, data=previous, col=alpha(p_col, .7), lty=1, lwd=3.5)
     
     # create regression model 
-    fit <- lm(truth[,tolower(var)]~poly(1:length(truth$time), 8, raw=TRUE), truth) 
-    
+    #fit <- lm(truth[,tolower(var)]~poly(1:length(truth$time), 6, raw=TRUE), truth) 
     # add regression line  
-    lines(fit$fitted.values~truth$time, col=l_col, lty=2, lwd=3.5)
+    #lines(fit$fitted.values~truth$time, col=l_col, lty=2, lwd=3.5)
     
     # add legend
-    legend("topright", inset=c(.008,.02), legend=c("Observed", "Predicted", "Trend"), 
-           col=c(t_col, color, l_col), pch=16, xpd=TRUE, bty="n", cex=1.8, text.col=lesser)
+    legend("topright", inset=c(.008,.02), legend=c("Observed", "Predicted", "Previous"), 
+           col=c(t_col, color, p_col), pch=16, xpd=TRUE, bty="n", cex=1.8, text.col=lesser)
 }

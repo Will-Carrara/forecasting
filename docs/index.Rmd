@@ -11,19 +11,22 @@ output:
   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 </svg></button>
 
-
 <div class="dropdown-content">
 <a href="alfalfa_light.html">Alfalfa</a>
 <a href="almonds_light.html">Almonds</a>
+<a href="cherries_light.html">Cherries</a>
 <a href="citrus_light.html">Citrus</a>
 <a href="corn_light.html">Corn</a>
+<a href="misc_vegs_&_fruits_light.html">Misc Vegs & Fruits</a> 
+<a href="olives_light.html">Olives</a>  
+<a href="peaches_light.html">Peaches</a>
 <a href="pistachios_light.html">Pistachios</a>
+<a href="plums_light.html">Plums</a>
 <a href="rice_light.html">Rice</a>
 <a href="walnuts_light.html">Walnuts</a>
 <a href="wine_grapes_light.html">Wine Grapes</a>
 </div>
 </div>
-
 
 <button class='btn' onclick="window.location.href='index_dark.html'">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill= "#768390" class="bi bi-moon-fill">
@@ -31,4 +34,21 @@ output:
     </svg>
 </button>
 
-Here we explore a historically based forecasting system for SIMS.
+  Here we explore a forecasting system for SIMS using dynamic time warping. In time series analysis, dynamic time warping (DTW) is one of the algorithms for measuring similarity between two temporal sequences, which may vary in time. For instance, one use case is to detect the sound pattern of the same kind. Suppose we want to recognize the voice of a person by analyzing his sound track, and we are able to collect his sound track of saying Hello in one scenario. However, people speak in the same word in different ways, what if he speaks <i>hello</i> in a much slower pace like <i>Heeeeeeelloooooo</i>, we will need an algorithm to match up the sound track of different lengths and be able to identify they come from the same person.
+
+In general, DTW is a method that calculates an optimal match between two given sequences (e.g. time series) with certain restriction and rules:
+
+  1. Every index from the first sequence must be matched with one or more indices from the other sequence, and vice versa
+    
+  2. The first index from the first sequence must be matched with the first index from the other sequence (but it does not have to be its only match)
+    
+  3. The last index from the first sequence must be matched with the last index from the other sequence (but it does not have to be its only match)
+    
+  4. The mapping of the indices from the first sequence to indices from the other sequence must be monotonically increasing, and vice versa, i.e. if <i>j>i</i> are indices from the first sequence, then there must not be two indices <i>l>k</i>in the other sequence, such that index <i>i</i> is matched with index <i>l</i> and index <i>j</i> is matched with index <i>k</i>, and vice versa.
+    
+The optimal match is denoted by the match that satisfies all the restrictions and the rules and that has the minimal cost, where the cost is computed as the sum of absolute differences, for each matched pair of indices, between their values.
+
+<br><br>
+```{r, out.width = "700px", fig.align="center", fig.cap="**Figure 1:** DTW alignment and warping path for time series with identical length (a,c) and for time series with different length (b,d).", echo=FALSE, fig.show='hold'}
+knitr::include_graphics("https://media.arxiv-vanity.com/render-output/4194931/dtw_alignment.png")
+```
