@@ -35,7 +35,7 @@ output:
     </svg>
 </button>
 
-  Here we explore a forecasting system for SIMS using dynamic time warping. In time series analysis, dynamic time warping (DTW) is one of the algorithms for measuring similarity between two temporal sequences, which may vary in time. For instance, one use case is to detect the sound pattern of the same kind. Suppose we want to recognize the voice of a person by analyzing his sound track, and we are able to collect his sound track of saying Hello in one scenario. However, people speak in the same word in different ways, what if he speaks <i>hello</i> in a much slower pace like <i>Heeeeeeelloooooo</i>, we will need an algorithm to match up the sound track of different lengths and be able to identify they come from the same person.
+Here we explore a forecasting system for SIMS using dynamic time warping. In time series analysis, dynamic time warping (DTW) is one of the algorithms for measuring similarity between two temporal sequences, which may vary in time. For instance, one use case is to detect the sound pattern of the same kind. Suppose we want to recognize the voice of a person by analyzing his sound track, and we are able to collect his sound track of saying <i>Hello</i> in one scenario. However, people speak in the same word in different ways, what if he speaks hello in a much slower pace like <i>Heeeeeeelloooooo</i>, we will need an algorithm to match up the sound track of different lengths and be able to identify they come from the same person. Comparatively, the same crop may be later in the season yielding a similar offset sequence.
 
 In general, DTW is a method that calculates an optimal match between two given sequences (e.g. time series) with certain restriction and rules:
 
@@ -45,11 +45,11 @@ In general, DTW is a method that calculates an optimal match between two given s
     
   3. The last index from the first sequence must be matched with the last index from the other sequence (but it does not have to be its only match)
     
-  4. The mapping of the indices from the first sequence to indices from the other sequence must be monotonically increasing, and vice versa, i.e. if <i>j>i</i> are indices from the first sequence, then there must not be two indices <i>l>k</i>in the other sequence, such that index <i>i</i> is matched with index <i>l</i> and index <i>j</i> is matched with index <i>k</i>, and vice versa.
+  4. The mapping of the indices from the first sequence to indices from the other sequence must be monotonically increasing, and vice versa, i.e. if <i>j>i</i> are indices from the first sequence, then there must not be two indices <i>l>k</i> in the other sequence, such that index <i>i</i> is matched with index <i>l</i> and index <i>j</i> is matched with index <i>k</i>, and vice versa.
     
 The optimal match is denoted by the match that satisfies all the restrictions and the rules and that has the minimal cost, where the cost is computed as the sum of absolute differences, for each matched pair of indices, between their values.
 
 <br><br>
-```{r, out.width = "700px", fig.align="center", fig.cap="**Figure 1:** DTW alignment and warping path for time series with identical length (a,c) and for time series with different length (b,d).", echo=FALSE, fig.show='hold'}
+```{r, out.width = "725px", fig.align="center", fig.cap="<br>**Figure 1: **DTW alignment and warping path for time series with identical length (a,c) and for time series with different length (b,d).", echo=FALSE}
 knitr::include_graphics("https://media.arxiv-vanity.com/render-output/4194931/dtw_alignment.png")
 ```

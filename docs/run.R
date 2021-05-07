@@ -39,7 +39,7 @@ for (i in 1:nrow(data)) {
     # make api request for ground truth
     gt = process(parse(request(geometry, 'time_series', year), year))
     
-    # make api request for previosu year
+    # make api request for previous year
     pr = process(parse(request(geometry, 'time_series', year-1), year-1))
 
     # generate dark report

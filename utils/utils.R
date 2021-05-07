@@ -10,7 +10,7 @@ request = function (geometry, endpoint, year, crop_type=-1) {
     # dates for comparison
     start_date = paste0(year,'-01-01')
     end_date = paste0(year,'-12-31')
-    today = paste0(year,'-05-06')
+    today = paste0(year,'-05-07')
     
     # api server address
     server = 'http://127.0.0.1:5000/'
@@ -33,7 +33,7 @@ request = function (geometry, endpoint, year, crop_type=-1) {
     
     # obtain content of api return 
     content = as.data.frame(content(response, as="parsed", type="text/csv"))
-    
+
     return (content)
 }
 
