@@ -8,16 +8,16 @@ library(ggplot2)
 request = function (geometry, endpoint, year, crop_type=-1) {
     
     # dates for comparison
-    start_date = paste0(year,'-01-01')
-    end_date = paste0(year,'-12-31')
-    today = paste0(year,'-05-07')
+    start_date = paste0(year, '-01-01')
+    end_date = paste0(year, '-12-31')
+    today = paste0(year, format(Sys.time(), '-%m-%d'))
     
     # api server address
     server = 'http://127.0.0.1:5000/'
     
     # create query and make request
     response = GET(paste0(server,endpoint), 
-                   query = list(api_key='ythsn82poy',
+                   query = list(api_key = 'ythsn82poy',
                                 interval = 'daily',
                                 geometry = geometry,
                                 crop_type = crop_type,
