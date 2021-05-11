@@ -10,10 +10,12 @@ request = function (geometry, endpoint, year, crop_type=-1, shift=0) {
     # dates for comparison
     start_date = paste0(year, '-01-01')
     end_date = paste0(year, '-12-31')
-    today = paste0(year, format(Sys.time(), '-%m-%d'))
+    #today = paste0(year, format(Sys.time(), '-%m-%d'))
+    
+    today = '2020-03-01'
     
     # optional shift
-    today = as.Date(today)+(shift*30)
+    today = as.Date(today)+(shift*60)
     
     # api server address
     server = 'http://127.0.0.1:5000/'

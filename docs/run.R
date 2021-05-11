@@ -40,7 +40,6 @@ for (i in 1:nrow(data)) {
     df_1 = process(parse(request(geometry, 'forecast', year, shift=1), year))
     df_2 = process(parse(request(geometry, 'forecast', year, shift=2), year))
     df_3 = process(parse(request(geometry, 'forecast', year, shift=3), year))
-    df_4 = process(parse(request(geometry, 'forecast', year, shift=4), year))
     
     # make api request for ground truth
     gt = process(parse(request(geometry, 'time_series', year, shift=0), year))

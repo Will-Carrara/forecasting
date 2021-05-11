@@ -54,19 +54,16 @@ visualize(df, gt, pr, 'NDVI', crop, year, dark=TRUE)
 visualize(df_1, gt, pr, 'NDVI', crop, year, dark=TRUE)
 visualize(df_2, gt, pr, 'NDVI', crop, year, dark=TRUE)
 visualize(df_3, gt, pr, 'NDVI', crop, year, dark=TRUE)
-visualize(df_4, gt, pr, 'NDVI', crop, year, dark=TRUE)
 
 # plot eto
 visualize(df, gt, pr, 'Eto', crop, year, dark=TRUE)
 visualize(df_1, gt, pr, 'Eto', crop, year, dark=TRUE)
 visualize(df_2, gt, pr, 'Eto', crop, year, dark=TRUE)
 visualize(df_3, gt, pr, 'Eto', crop, year, dark=TRUE)
-visualize(df_4, gt, pr, 'Eto', crop, year, dark=TRUE)
 
 # plot kcb
 visualize(df, gt, pr, 'Kcb', crop, year, dark=TRUE)
 visualize(df_1, gt, pr, 'Kcb', crop, year, dark=TRUE)
 visualize(df_2, gt, pr, 'Kcb', crop, year, dark=TRUE)
 visualize(df_3, gt, pr, 'Kcb', crop, year, dark=TRUE)
-visualize(df_4, gt, pr, 'Kcb', crop, year, dark=TRUE)
 ```
