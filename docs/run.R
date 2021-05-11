@@ -34,13 +34,19 @@ for (i in 1:nrow(data)) {
     geometry = paste0(lon, ',', lat)
     
     # make api request for forecast
-    df = process(parse(request(geometry, 'forecast', year), year))
+    df = process(parse(request(geometry, 'forecast', year, shift=0), year))
+    
+    # add shift
+    df_1 = process(parse(request(geometry, 'forecast', year, shift=1), year))
+    df_2 = process(parse(request(geometry, 'forecast', year, shift=2), year))
+    df_3 = process(parse(request(geometry, 'forecast', year, shift=3), year))
+    df_4 = process(parse(request(geometry, 'forecast', year, shift=4), year))
     
     # make api request for ground truth
-    gt = process(parse(request(geometry, 'time_series', year), year))
+    gt = process(parse(request(geometry, 'time_series', year, shift=0), year))
     
     # make api request for previous year
-    pr = process(parse(request(geometry, 'time_series', year-1), year-1))
+    pr = process(parse(request(geometry, 'time_series', year-1, shift=0), year-1))
 
     # generate dark report
     rmarkdown::render("dark_template.Rmd",output_file=paste0(tolower(crop), '_dark.html')) 

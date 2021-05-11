@@ -50,10 +50,22 @@ source('../utils/utils.R')
 ```{r}
 # plot ndvi
 visualize(df, gt, pr, 'NDVI', crop, year, dark=FALSE)
+visualize(df_1, gt, pr, 'NDVI', crop, year, dark=FALSE)
+visualize(df_2, gt, pr, 'NDVI', crop, year, dark=FALSE)
+visualize(df_3, gt, pr, 'NDVI', crop, year, dark=FALSE)
+visualize(df_4, gt, pr, 'NDVI', crop, year, dark=FALSE)
 
 # plot eto
 visualize(df, gt, pr, 'Eto', crop, year, dark=FALSE)
+visualize(df_1, gt, pr, 'Eto', crop, year, dark=FALSE)
+visualize(df_2, gt, pr, 'Eto', crop, year, dark=FALSE)
+visualize(df_3, gt, pr, 'Eto', crop, year, dark=FALSE)
+visualize(df_4, gt, pr, 'Eto', crop, year, dark=FALSE)
 
 # plot kcb
 visualize(df, gt, pr, 'Kcb', crop, year, dark=FALSE)
+visualize(df_1, gt, pr, 'Kcb', crop, year, dark=FALSE)
+visualize(df_2, gt, pr, 'Kcb', crop, year, dark=FALSE)
+visualize(df_3, gt, pr, 'Kcb', crop, year, dark=FALSE)
+visualize(df_4, gt, pr, 'Kcb', crop, year, dark=FALSE)
 ```
