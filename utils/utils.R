@@ -5,7 +5,7 @@ library(httr)
 library(ggplot2)
 
 # api call
-request = function (geometry, endpoint, year, crop_type=-1, shift=0) {
+request = function (geometry, endpoint, year, crop_type, shift=0) {
     
     # dates for comparison
     start_date = paste0(year, '-01-01')
