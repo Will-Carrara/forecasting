@@ -12,7 +12,7 @@ request = function (geometry, endpoint, year, crop_type=-1, shift=0) {
     end_date = paste0(year, '-12-31')
     #today = paste0(year, format(Sys.time(), '-%m-%d'))
     
-    today = '2020-03-01'
+    today = paste0(year,'-03-01')
     
     # optional shift
     today = as.Date(today)+(shift*60)
