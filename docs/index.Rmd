@@ -50,5 +50,5 @@ The optimal match is denoted by the match that satisfies all the restrictions an
 
 <br><br>
 ```{r, out.width = "725px", fig.align="center", fig.cap="<br>**Figure 1: **DTW alignment and warping path for time series with identical length (a,c) and for time series with different length (b,d).", echo=FALSE}
-knitr::include_graphics("https://media.arxiv-vanity.com/render-output/4194931/dtw_alignment.png")
+knitr::include_graphics("../graphics/dtw.png")
 ```
