@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-09-14" />
+<meta name="date" content="2021-09-15" />
 
 <title>Forecasting</title>
 
@@ -166,7 +166,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">Forecasting</h1>
-<h4 class="date">September 14, 2021</h4>
+<h4 class="date">September 15, 2021</h4>
 
 </div>
 
@@ -184,7 +184,7 @@ pre code {
 <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
 </svg>
 </button>
-<p>Here we explore a forecasting system for SIMS using dynamic time warping. In time series analysis, dynamic time warping (DTW) is one of the algorithms for measuring similarity between two temporal sequences, which may vary in time. For instance, one use case is to detect the sound pattern of the same kind. Suppose we want to recognize the voice of a person by analyzing his sound track, and we are able to collect his sound track of saying <i>Hello</i> in one scenario. However, people speak in the same word in different ways, what if he speaks hello in a much slower pace like <i>Heeeeeeelloooooo</i>, we will need an algorithm to match up the sound track of different lengths and be able to identify they come from the same person. Comparatively, the same crop may be later in the season yielding a similar offset sequence.</p>
+<p>Here we explore a forecasting system for SIMS using dynamic time warping. In time series analysis, dynamic time warping (DTW) is one of the algorithms for measuring similarity between two temporal sequences, which may vary in time. For instance, one use case is to detect the sound pattern of the same kind. Suppose we want to recognize the voice of a person by analyzing his sound track, and we are able to collect his sound track of saying <i>Hello</i> in one scenario. However, people speak the same word in different ways, what if he speaks hello at a much slower pace like <i>Heeeeeeelloooooo</i>, we will need an algorithm to match up the sound track of different lengths and be able to identify they come from the same person. Comparatively, the same crop may be later in the season yielding a similar offset sequence.</p>
 <p>In general, DTW is a method that calculates an optimal match between two given sequences (e.g. time series) with certain restriction and rules:</p>
 <ol style="list-style-type: decimal">
 <li><p>Every index from the first sequence must be matched with one or more indices from the other sequence, and vice versa</p></li>
